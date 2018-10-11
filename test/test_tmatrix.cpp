@@ -136,7 +136,7 @@ TEST(TMatrix, cant_add_matrices_with_not_equal_size)
 {
   TMatrix<int> m1(5), m2(6);
 
-  EXPECT_NO_THROW(m1 + m2);
+  EXPECT_ANY_THROW(m1 + m2);
 }
 
 TEST(TMatrix, can_subtract_matrices_with_equal_size)
@@ -151,6 +151,6 @@ TEST(TMatrix, cant_subtract_matrixes_with_not_equal_size)
 {
   TMatrix<int> m1(5), m2(6);
 
-  EXPECT_NO_THROW(m1 - m2);
+  EXPECT_ANY_THROW(m1 - m2);
 }
 
