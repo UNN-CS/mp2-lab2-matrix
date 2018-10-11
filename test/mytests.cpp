@@ -60,13 +60,6 @@ TEST(TVector, not_equal_vectors_compare_returns_false)
   EXPECT_FALSE(v2 == v1);
 }
 
-TEST(TVector, vectors_with_different_size_are_not_equal)
-{
-  TVector<int> v1(5, 2), v2(6, 2);
-
-  EXPECT_NE(v1, v2);
-}
-
 TEST(TVector, copied_vector_equal_to_source_one)
 {
   TVector<int> v1(5, 2), v2(v1);
