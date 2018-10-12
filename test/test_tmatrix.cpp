@@ -1,5 +1,5 @@
 #include "utmatrix.h"
-#include <gtest/gtest.h>
+#include "gtest.h"
 
 TEST(TMatrix, can_create_matrix_with_positive_length)
 {

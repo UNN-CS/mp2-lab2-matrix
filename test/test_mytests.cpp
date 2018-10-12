@@ -1,5 +1,5 @@
 #include "utmatrix.h"
-#include <gtest/gtest.h>
+#include "gtest.h"
 
 TEST(my_test, can_get_and_compare_elements_from_main_diagonal)
 {
