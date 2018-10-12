@@ -23,7 +23,7 @@ TEST(my_test, can_add_matrixes_multiple_times)
 	for (int i = 0; i < 10; ++i)
 		for (int j = i; j < 10; ++j)
 			a[i][j] = b[i][j] = c[i][j] = i + j;
-	auto d = a + b + c;
+	TMatrix<int> d = a + b + c;
 	for (int i = 0; i < 10; ++i)
 		for (int j = i; j < 10; ++j)
 			EXPECT_EQ(d[i][j], 3 * (i + j));
@@ -35,7 +35,7 @@ TEST(my_test, can_substract_matrixes_multiple_times)
 	for (int i = 0; i < 10; ++i)
 		for (int j = i; j < 10; ++j)
 			a[i][j] = b[i][j] = c[i][j] = -(i + j);
-	auto d = a + b + c;
+	TMatrix<int> d = a + b + c;
 	for (int i = 0; i < 10; ++i)
 		for (int j = i; j < 10; ++j)
 			EXPECT_EQ(d[i][j], -3 * (i + j));
@@ -47,7 +47,7 @@ TEST(my_test, can_assing_matrixes_multiple_times)
 	for (int i = 0; i < 10; ++i)
 		for (int j = i; j < 10; ++j)
 			a[i][j] = b[i][j] = c[i][j] = i + j;
-	auto d = a = b = c;
+	TMatrix<int> d = a = b = c;
 	for (int i = 0; i < 10; ++i)
 		for (int j = i; j < 10; ++j)
 			EXPECT_EQ(d[i][j], i + j);
