@@ -274,7 +274,7 @@ TMatrix<ValType> TMatrix<ValType>::operator+(const TMatrix<ValType> &mt)
 {
     if (this->Size != mt.Size)
         throw 1;
-    return TVector<TVector<ValType>>::operator+(mt);
+    return TVector<TVector<ValType> >::operator+(mt);
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // вычитание
@@ -282,7 +282,7 @@ TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
 {
     if (this->Size != mt.Size)
         throw 1;
-    return TVector<TVector<ValType>>::operator-(mt);
+    return TVector<TVector<ValType> >::operator-(mt);
 } /*-------------------------------------------------------------------------*/
 
 // TVector О3 Л2 П4 С6
