@@ -9,7 +9,7 @@
 #define __TMATRIX_H__
 
 #include <iostream>
-
+#include<vcruntime_exception.h>
 using namespace std;
 
 const int MAX_VECTOR_SIZE = 100000000;
