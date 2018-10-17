@@ -69,7 +69,7 @@ TVector<ValType>::TVector(int s, int si)
 	}
 	if ((si < 0) || (si > MAX_VECTOR_SIZE))
 	{
-		throw "Start index is negative");
+		throw "Start index is negative";
 	}
 	pVector = new ValType[s];
 	Size = s;
