@@ -9,7 +9,7 @@
 #define __TMATRIX_H__
 
 #include <iostream>
-#include<vcruntime_exception.h>
+
 using namespace std;
 
 const int MAX_VECTOR_SIZE = 100000000;
@@ -69,8 +69,7 @@ TVector<ValType>::TVector(int s, int si)
 	}
 	if ((si < 0) || (si > MAX_VECTOR_SIZE))
 	{
-		exception exp("Start index is negative");
-		throw exp;
+		throw "Start index is negative");
 	}
 	pVector = new ValType[s];
 	Size = s;
@@ -99,8 +98,7 @@ ValType& TVector<ValType>::operator[](int pos)
 {
 	if (pos < 0 || pos - StartIndex > Size)
 	{
-		exception exp("index out of range");
-		throw exp;
+		throw "index out of range";
 	}
 	else
 		return pVector[pos - StartIndex];
@@ -181,8 +179,7 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 	}
 	else
 	{
-		exception exp("not equal size!");
-		throw exp;
+		throw "not equal size!";
 	}
 }
 
@@ -196,8 +193,7 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 			temp.pVector[i] = pVector[i] - v.pVector[i];
 		return temp;
 	}
-	exception exp("not equal size!");
-	throw exp;
+	throw "not equal size!";
 }
 
 template <class ValType> // скалярное произведение
@@ -210,8 +206,7 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 			result += pVector[i] * v.pVector[i];
 		return result;
 	}
-	exception exp("not equal size!");
-	throw exp;
+	throw "not equal size!";
 }
 
 
