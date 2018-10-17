@@ -69,7 +69,7 @@ TVector<ValType>::TVector(int s, int si)
 	}
 	if ((si < 0) || (si > MAX_VECTOR_SIZE))
 	{
-		out_of_range exp("Start index is negative");
+		exception exp("Start index is negative");
 		throw exp;
 	}
 	pVector = new ValType[s];
@@ -99,7 +99,7 @@ ValType& TVector<ValType>::operator[](int pos)
 {
 	if (pos < 0 || pos - StartIndex > Size)
 	{
-		out_of_range exp("index out of range");
+		exception exp("index out of range");
 		throw exp;
 	}
 	else
