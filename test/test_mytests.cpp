@@ -81,7 +81,7 @@ TEST(my_test, vectors_with_different_start_indexes_are_not_equal)
 	ASSERT_NE(a, b);
 }
 
-TEST(my_test, )
+TEST(my_test, can_multiply_vector_by_itself)
 {
 	TVector<int> a(5);
 	for (int i = 0; i < 5; ++i)
