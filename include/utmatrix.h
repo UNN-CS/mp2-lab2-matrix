@@ -143,7 +143,7 @@ TVector<ValType> TVector<ValType>::operator+(const ValType &val)
 {
 	TVector<ValType> tmp(*this);
 
-	for (int i = 0; i < Size - StartIndex; i++)
+	for (int i = 0; i < Size; i++)
 	{
 		tmp.pVector[i] += val;
 	}
@@ -155,7 +155,7 @@ TVector<ValType> TVector<ValType>::operator-(const ValType &val)
 {
 	TVector<ValType> tmp(*this);
 
-	for (int i = 0; i < Size - StartIndex; i++)
+	for (int i = 0; i < Size ; i++)
 	{
 		tmp.pVector[i] -= val;
 	}
@@ -167,7 +167,7 @@ TVector<ValType> TVector<ValType>::operator*(const ValType &val)
 {
 	TVector<ValType> tmp(*this);
 
-	for (int i = 0; i < Size - StartIndex; i++)
+	for (int i = 0; i < Size ; i++)
 	{
 		tmp.pVector[i] *= val;
 	}
@@ -182,7 +182,7 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 
 	TVector<ValType> tmp(*this);
 
-	for (int i = 0; i < Size - StartIndex; i++)
+	for (int i = 0; i < Size ; i++)
 	{
 		tmp.pVector[i] = pVector[i] + v.pVector[i];
 	}
@@ -198,7 +198,7 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 
 	TVector<ValType> tmp(*this);
 
-	for (int i = 0; i < Size - StartIndex; i++)
+	for (int i = 0; i < Size ; i++)
 	{
 		tmp.pVector[i] = pVector[i] - v.pVector[i];
 	}
