@@ -10,7 +10,6 @@
 
 #include <iostream>
 #include <algorithm>
-#include <cmath>
 
 using namespace std;
 
@@ -152,7 +151,10 @@ TVector<ValType> TVector<ValType>::operator+(const ValType &val)
   ValType *pr = ret.pVector, *end = ret.pVector + ret.Size;
 
   while (pr != end)
-    *pr++ = *pr + val;
+  {
+    *pr = *pr + val;
+    ++pr;
+  }
 
   return ret;
 } /*-------------------------------------------------------------------------*/
@@ -164,7 +166,10 @@ TVector<ValType> TVector<ValType>::operator-(const ValType &val)
   ValType *pr = ret.pVector, *end = ret.pVector + ret.Size;
 
   while (pr != end)
-    *pr++ = *pr - val;
+  {
+    *pr = *pr - val;
+    ++pr;
+  }
 
   return ret;
 } /*-------------------------------------------------------------------------*/
@@ -176,7 +181,10 @@ TVector<ValType> TVector<ValType>::operator*(const ValType &val)
   ValType *pr = ret.pVector, *end = ret.pVector + ret.Size;
 
   while (pr != end)
-    *pr++ = *pr * val;
+  {
+    *pr = *pr * val;
+    ++pr;
+  }
 
   return ret;
 } /*-------------------------------------------------------------------------*/
