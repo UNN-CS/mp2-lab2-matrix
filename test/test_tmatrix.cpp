@@ -1,6 +1,6 @@
 #include "utmatrix.h"
 
-#include <gtest/gtest.h>
+#include "gtest.h"
 
 TEST(TMatrix, can_create_matrix_with_positive_length)
 {
@@ -128,7 +128,7 @@ TEST(TMatrix, compare_equal_matrices_return_true)
 			m2[i][j] = i * j;
 		}
 	EXPECT_TRUE(m1 == m2);
-	
+
 }
 
 TEST(TMatrix, compare_matrix_with_itself_return_true)

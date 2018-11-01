@@ -1,6 +1,6 @@
 #include "utmatrix.h"
 
-#include <gtest/gtest.h>
+#include "gtest.h"
 
 TEST(TVector, can_add_three_vectors_with_equal_size_MY_TEST)
 {
