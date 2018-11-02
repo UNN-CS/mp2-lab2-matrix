@@ -1,6 +1,6 @@
 #include "utmatrix.h"
 
-#include "gtest.h"
+#include "gtest/gtest.h"
 
 TEST(TVector, can_create_vector_with_positive_length)
 {
@@ -31,123 +31,189 @@ TEST(TVector, can_create_copied_vector)
 
 TEST(TVector, copied_vector_is_equal_to_source_one)
 {
-  ADD_FAILURE();
+	TMatrix<int> a;
+	a[1][3] = 17;
+	TMatrix<int> b(a);
+
+	ASSERT_EQ(b, a);
 }
 
 TEST(TVector, copied_vector_has_its_own_memory)
 {
-  ADD_FAILURE();
+	TVector<int> m(4), mx(m);
+
+	ASSERT_NE(&m[2], &mx[0]);
 }
 
 TEST(TVector, can_get_size)
 {
-  TVector<int> v(4);
+	TVector<int> v(4);
 
-  EXPECT_EQ(4, v.GetSize());
+	EXPECT_EQ(4, v.GetSize());
 }
 
 TEST(TVector, can_get_start_index)
 {
-  TVector<int> v(4, 2);
+	TVector<int> v(4, 2);
 
-  EXPECT_EQ(2, v.GetStartIndex());
+	EXPECT_EQ(2, v.GetStartIndex());
 }
 
 TEST(TVector, can_set_and_get_element)
 {
-  TVector<int> v(4);
-  v[0] = 4;
+	TVector<int> v(4);
+	v[0] = 4;
 
-  EXPECT_EQ(4, v[0]);
+	EXPECT_EQ(4, v[0]);
 }
 
 TEST(TVector, throws_when_set_element_with_negative_index)
 {
-  ADD_FAILURE();
+    TMatrix<int> a(4);
+  
+    ASSERT_ANY_THROW(a[0][-1]);
 }
 
 TEST(TVector, throws_when_set_element_with_too_large_index)
 {
-  ADD_FAILURE();
+	TMatrix<int> a(4);
+
+	ASSERT_ANY_THROW(a[0][5]);
 }
 
 TEST(TVector, can_assign_vector_to_itself)
 {
-  ADD_FAILURE();
+	TVector<int> a(4);
+
+	ASSERT_NO_THROW(a = a);
 }
 
 TEST(TVector, can_assign_vectors_of_equal_size)
 {
-  ADD_FAILURE();
+	TVector<int> a(4), b(4);
+
+	b = a;
+
+	EXPECT_EQ(a, b);
 }
 
 TEST(TVector, assign_operator_change_vector_size)
 {
-  ADD_FAILURE();
+	TVector<int> a(5);
+
+	ASSERT_NO_THROW(a = 6);
 }
 
 TEST(TVector, can_assign_vectors_of_different_size)
 {
-  ADD_FAILURE();
+	TVector<int> a(4), b(6);
+
+	b = a;
+
+	EXPECT_EQ(a, b);
 }
 
 TEST(TVector, compare_equal_vectors_return_true)
 {
-  ADD_FAILURE();
+	TVector<int> a(4), b(4);
+
+	a = b;
+
+	EXPECT_EQ(1, a == b);
 }
 
 TEST(TVector, compare_vector_with_itself_return_true)
 {
-  ADD_FAILURE();
+	TVector<int> a(5);
+
+	EXPECT_EQ(1, a == a);
 }
 
 TEST(TVector, vectors_with_different_size_are_not_equal)
 {
-  ADD_FAILURE();
+	TVector<int> a(4), b(5);
+
+	EXPECT_EQ(0, a == b);
 }
 
 TEST(TVector, can_add_scalar_to_vector)
 {
-  ADD_FAILURE();
+	TVector<int> a(5);
+
+	ASSERT_NO_THROW(a + 5);
 }
 
 TEST(TVector, can_subtract_scalar_from_vector)
 {
-  ADD_FAILURE();
+	TVector<int> a(5);
+
+	ASSERT_NO_THROW(a - 5);
 }
 
 TEST(TVector, can_multiply_scalar_by_vector)
 {
-  ADD_FAILURE();
+	TVector<int> a(5);
+
+	ASSERT_NO_THROW(a * 5);
 }
 
 TEST(TVector, can_add_vectors_with_equal_size)
 {
-  ADD_FAILURE();
+	TVector<int> a(5), b(5);
+
+	a[3] = 44;
+	b[2] = 12;
+
+	ASSERT_NO_THROW(a + b);
 }
 
 TEST(TVector, cant_add_vectors_with_not_equal_size)
 {
-  ADD_FAILURE();
+	TVector<int> a(5), b(6);
+
+	a[3] = 44;
+	b[2] = 12;
+
+	ASSERT_ANY_THROW(a + b);
 }
 
 TEST(TVector, can_subtract_vectors_with_equal_size)
 {
-  ADD_FAILURE();
+	TVector<int> a(5), b(5);
+
+	a[3] = 44;
+	b[2] = 12;
+
+	ASSERT_NO_THROW(a - b);
 }
 
 TEST(TVector, cant_subtract_vectors_with_not_equal_size)
 {
-  ADD_FAILURE();
+	TVector<int> a(5), b(6);
+
+	a[3] = 44;
+	b[2] = 12;
+
+	ASSERT_ANY_THROW(a - b);
 }
 
 TEST(TVector, can_multiply_vectors_with_equal_size)
 {
-  ADD_FAILURE();
+	TVector<int> a(5), b(5);
+
+	a[3] = 44;
+	b[2] = 12;
+
+	ASSERT_NO_THROW(a * b);
 }
 
 TEST(TVector, cant_multiply_vectors_with_not_equal_size)
 {
-  ADD_FAILURE();
+	TVector<int> a(5), b(6);
+
+	a[3] = 44;
+	b[2] = 12;
+
+	ASSERT_ANY_THROW(a * b);
 }
 
