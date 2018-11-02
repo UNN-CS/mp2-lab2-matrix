@@ -31,9 +31,9 @@ TEST(TVector, can_create_copied_vector)
 
 TEST(TVector, copied_vector_is_equal_to_source_one)
 {
-	TMatrix<int> a;
-	a[1][3] = 17;
-	TMatrix<int> b(a);
+	TVector<int> a;
+	a[1] = 17;
+	TVector<int> b(a);
 
 	ASSERT_EQ(b, a);
 }
@@ -69,16 +69,16 @@ TEST(TVector, can_set_and_get_element)
 
 TEST(TVector, throws_when_set_element_with_negative_index)
 {
-    TMatrix<int> a(4);
+    TVector<int> a(4);
   
-    ASSERT_ANY_THROW(a[0][-1]);
+    ASSERT_ANY_THROW(a[-1]);
 }
 
 TEST(TVector, throws_when_set_element_with_too_large_index)
 {
-	TMatrix<int> a(4);
+	TVector<int> a(4);
 
-	ASSERT_ANY_THROW(a[0][5]);
+	ASSERT_ANY_THROW(a[5]);
 }
 
 TEST(TVector, can_assign_vector_to_itself)
