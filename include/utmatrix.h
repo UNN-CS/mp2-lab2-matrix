@@ -35,7 +35,7 @@ public:
   bool operator==(const TVector &v) const;  // сравнение
   bool operator!=(const TVector &v) const;  // сравнение
   TVector& operator=(const TVector &v);     // присваивание
-  TVector& operator=(TVector<ValType> &&v);
+  //TVector& operator=(TVector<ValType> &&v);
 
   // скалярные операции
   TVector  operator+(const ValType &val);   // прибавить скаляр
@@ -235,7 +235,7 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 	return sum;
 } /*-------------------------------------------------------------------------*/
 
-template <class ValType>
+/*template <class ValType>
 TVector<ValType>& TVector<ValType>::operator=(TVector<ValType> &&v)
 {
 	delete[] pVector;
@@ -244,7 +244,7 @@ TVector<ValType>& TVector<ValType>::operator=(TVector<ValType> &&v)
 	StartIndex = v.StartIndex;
 	v.pVector = nullptr;
 	return (*this);
-} /*-------------------------------------------------------------------------*/
+}*/ /*-------------------------------------------------------------------------*/
 
 
 // Верхнетреугольная матрица
@@ -322,7 +322,7 @@ TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 {
 	if (this->Size == mt.Size)
 	{
-		delete[] this->pVetor;
+		delete[] this->pVector;
 		this->pVector = new TMatrix<ValType>[this->Size];
 		this->Size = mt.Size;
 		this->StartIndex = mt.StartIndex;
