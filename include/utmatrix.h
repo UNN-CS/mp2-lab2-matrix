@@ -36,7 +36,6 @@ public:
   bool operator!=(const TVector &v) const;  // сравнение
   TVector& operator=(const TVector &v);     // присваивание
   TVector& operator=(TVector<ValType> &&v);
-  TVector& operator=(int newLen);  // изменение длины вектора
 
   // скалярные операции
   TVector  operator+(const ValType &val);   // прибавить скаляр
@@ -243,19 +242,6 @@ TVector<ValType>& TVector<ValType>::operator=(TVector<ValType> &&v)
 	return (*this);
 } /*-------------------------------------------------------------------------*/
 
-template <class ValType>
-TVector<ValType>& TVector<ValType>::operator=(int newLen)
-{
-	delete[] pVector;
-
-	Size = newLen;
-	pVector = new ValType[Size];
-	for (int i = 0; i < Size; i++)
-		pVector[i] = 0;
-
-	return (*this);
-}
-
 
 // Верхнетреугольная матрица
 template <class ValType>
@@ -289,7 +275,7 @@ public:
 template <class ValType>
 TMatrix<ValType>::TMatrix(int s): TVector<TVector<ValType> >(s)
 {
-	if (s <= 0)
+	if (s <= 0 || s >= MAX_MATRIX_SIZE)
 		throw s;
 	else
 		for (int i = 0; i < s; i++)
@@ -330,15 +316,15 @@ bool TMatrix<ValType>::operator!=(const TMatrix<ValType> &mt) const
 template <class ValType> // присваивание
 TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 {
-	if (this->Size == mt.Size)
+	if (this->Size >= mt.Size)
 	{
-		delete[] this->pVetor;
-		this->pVector = new TMatrix<ValType>[this->Size];
+		delete[] this->pVector;
 		this->Size = mt.Size;
 		this->StartIndex = mt.StartIndex;
+		this->pVector = new TVector<ValType>[this->Size];
 	}
 	for (int i = 0; i < this->Size; i++)
-		this->pVector[i] = mt.pVector;
+		this->pVector[i] = mt.pVector[i];
 
 	return *this;
 } /*-------------------------------------------------------------------------*/

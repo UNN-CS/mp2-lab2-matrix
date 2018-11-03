@@ -1,6 +1,6 @@
 #include "utmatrix.h"
 
-#include "gtest/gtest.h"
+#include "gtest.h"
 
 TEST(TVector, can_create_vector_with_positive_length)
 {
@@ -100,8 +100,11 @@ TEST(TVector, can_assign_vectors_of_equal_size)
 TEST(TVector, assign_operator_change_vector_size)
 {
 	TVector<int> a(5);
+	TVector<int> b(17);
 
-	ASSERT_NO_THROW(a = 6);
+	a = b;
+
+	ASSERT_EQ(17, a.GetSize());
 }
 
 TEST(TVector, can_assign_vectors_of_different_size)
