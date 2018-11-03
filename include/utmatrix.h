@@ -9,8 +9,8 @@
 #define __TMATRIX_H__
 
 #include <iostream>
-#include <algorithm>
-#include <numeric>
+//#include <algorithm>
+//#include <numeric>
 
 using namespace std;
 
@@ -85,7 +85,9 @@ TVector<ValType>::TVector(const TVector<ValType> &v)
 	Size = v.Size;
 	StartIndex = v.StartIndex;
 	pVector = new ValType[Size];
-	copy(v.pVector, v.pVector + Size, pVector);
+	//copy(v.pVector, v.pVector + Size, pVector);
+	for (int i = 0; i < Size; i++)
+		pVector[i] = v.pVector[i];
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType>
@@ -140,7 +142,9 @@ TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 		}
 		
 		StartIndex = v.StartIndex;
-		copy(v.pVector, v.pVector + Size, pVector);
+		//copy(v.pVector, v.pVector + Size, pVector);
+		for (int i = 0; i < Size; i++)
+			pVector[i] = v.pVector[i];
 	}
 
 	return *this;
@@ -275,7 +279,7 @@ public:
 template <class ValType>
 TMatrix<ValType>::TMatrix(int s): TVector<TVector<ValType> >(s)
 {
-	if (s <= 0 || s >= MAX_MATRIX_SIZE)
+	if (s <= 0)
 		throw s;
 	else
 		for (int i = 0; i < s; i++)
@@ -316,15 +320,15 @@ bool TMatrix<ValType>::operator!=(const TMatrix<ValType> &mt) const
 template <class ValType> // присваивание
 TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 {
-	if (this->Size >= mt.Size)
+	if (this->Size == mt.Size)
 	{
-		delete[] this->pVector;
+		delete[] this->pVetor;
+		this->pVector = new TMatrix<ValType>[this->Size];
 		this->Size = mt.Size;
 		this->StartIndex = mt.StartIndex;
-		this->pVector = new TVector<ValType>[this->Size];
 	}
 	for (int i = 0; i < this->Size; i++)
-		this->pVector[i] = mt.pVector[i];
+		this->pVector[i] = mt.pVector;
 
 	return *this;
 } /*-------------------------------------------------------------------------*/
