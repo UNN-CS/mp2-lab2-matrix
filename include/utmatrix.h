@@ -239,9 +239,6 @@ TMatrix<ValType>::TMatrix(int s) : TVector<TVector<ValType> >(s)
 	else
 	for (int i = 0; i < s; i++)
 		this->pVector[i] = TVector<ValType>(s - i, i);
-
-	else
-		throw("Incorrect data");
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // конструктор копирования
