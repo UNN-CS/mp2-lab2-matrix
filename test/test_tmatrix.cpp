@@ -26,6 +26,7 @@ TEST(TMatrix, can_create_copied_matrix)
 
 TEST(TMatrix, copied_matrix_is_equal_to_source_one)
 {
+	ADD_FAILURE();
 	const int size = 2;
 	TMatrix<int> m(size);
 	for (int i = 0; i < size; i++)
@@ -38,6 +39,7 @@ TEST(TMatrix, copied_matrix_is_equal_to_source_one)
 
 TEST(TMatrix, copied_matrix_has_its_own_memory)
 {
+	ADD_FAILURE();
 	const int size = 3;
 	TMatrix<int> m(size);
 	for (int i = 0; i < size; i++)
@@ -52,6 +54,7 @@ TEST(TMatrix, copied_matrix_has_its_own_memory)
 
 TEST(TMatrix, can_get_size)
 {
+	ADD_FAILURE();
 	const int size = 6;
 	TMatrix<int> m(size);
 
@@ -60,6 +63,7 @@ TEST(TMatrix, can_get_size)
 
 TEST(TMatrix, can_set_and_get_element)
 {
+	ADD_FAILURE();
 	const int size = 3;
 	const int val = 4;
 	TMatrix<int> m(size);
