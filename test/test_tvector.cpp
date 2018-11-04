@@ -31,12 +31,19 @@ TEST(TVector, can_create_copied_vector)
 
 TEST(TVector, copied_vector_is_equal_to_source_one)
 {
-  ADD_FAILURE();
+	TVector<int> v1(10), v2(v1);
+
+	EXPECT_EQ(v1, v2);
 }
 
 TEST(TVector, copied_vector_has_its_own_memory)
 {
-  ADD_FAILURE();
+	TVector<char> v1(3);
+	v1[0] = 'a';
+	TVector<char> v2(v1);
+	v1[0] = 'b';
+
+	EXPECT_EQ(v2[0], 'a');
 }
 
 TEST(TVector, can_get_size)
@@ -63,37 +70,90 @@ TEST(TVector, can_set_and_get_element)
 
 TEST(TVector, throws_when_set_element_with_negative_index)
 {
-  ADD_FAILURE();
+	TVector<int> v1(5);
+
+	ASSERT_ANY_THROW(v1[-1] = 1);
 }
 
 TEST(TVector, throws_when_set_element_with_too_large_index)
 {
-  ADD_FAILURE();
+	TVector<int> v1(5);
+
+	ASSERT_ANY_THROW(v1[10] = 1);
 }
 
 TEST(TVector, can_assign_vector_to_itself)
 {
-  ADD_FAILURE();
+	const int size = 3;
+	TVector<int> v(size, 1), vt(size, 1);
+	// v = (2, 1, 0)
+	v[1] = 2;
+	v[2] = 1;
+	v[3] = 0;
+	// vt = (2, 1, 0)
+	vt[1] = 2;
+	vt[2] = 1;
+	vt[3] = 0;
+	v = v;
+
+	EXPECT_EQ(vt, v);
 }
 
 TEST(TVector, can_assign_vectors_of_equal_size)
 {
-  ADD_FAILURE();
+	const int size = 3;
+	TVector<int> v(size, 1), vt(size, 1);
+	// v = (2, 1, 0)
+	v[1] = 2;
+	v[2] = 1;
+	v[3] = 0;
+	// vt = (4, -1, 3)
+	vt[1] = 4;
+	vt[2] = -1;
+	vt[3] = 3;
+	v = vt;
+
+	EXPECT_EQ(vt, v);
 }
 
 TEST(TVector, assign_operator_change_vector_size)
 {
-  ADD_FAILURE();
+	const int sizev = 3, sizevt = 1;
+	TVector<int> v(sizev, 1), vt(sizevt, 1);
+	// v = (2, 1, 0)
+	v[1] = 2;
+	v[2] = 1;
+	v[3] = 0;
+	// vt = (10)
+	vt[1] = 10;
+	v = vt;
+
+	EXPECT_NE(sizev, v.GetSize());
 }
 
 TEST(TVector, can_assign_vectors_of_different_size)
 {
-  ADD_FAILURE();
+	const int sizev = 3, sizevt = 1;
+	TVector<int> v(sizev, 1), vt(sizevt, 1);
+	// v = (2, 1, 0)
+	v[1] = 2;
+	v[2] = 1;
+	v[3] = 0;
+	// vt = (10)
+	vt[1] = 10;
+	v = vt;
+
+	EXPECT_EQ(sizevt, v.GetSize());
 }
 
 TEST(TVector, compare_equal_vectors_return_true)
 {
-  ADD_FAILURE();
+	TVector<int> v1(3), v2(3);
+	v1[0] = 2; v2[0] = 2;
+	v1[1] = 3; v2[1] = 3;
+	v1[2] = 5; v2[2] = 5;
+
+	EXPECT_TRUE(v1 == v2);
 }
 
 TEST(TVector, compare_vector_with_itself_return_true)
