@@ -95,10 +95,10 @@ TVector<ValType>::~TVector()
 template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
-	if ((pos >= StartIndex) && (pos <= Size + StartIndex - 1))
-		return pVector[pos - StartIndex];
-	else
-		throw("Incorrect data");
+	if(pos < StartIndex || pos >= Size + StartIndex)
+		throw "Incorrect Index";
+
+	return pVector[pos - StartIndex];
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сравнение
@@ -120,7 +120,7 @@ bool TVector<ValType>::operator==(const TVector &v) const
 template <class ValType> // сравнение
 bool TVector<ValType>::operator!=(const TVector &v) const
 {
-	return !(operator==(v));
+	return !(*this == v);
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // присваивание
@@ -128,58 +128,55 @@ TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 {
 	if (Size != v.Size)
 	{
-		if (Size != v.Size)
-		{
-			Size = v.Size;
-			delete[] pVector;
-			pVector = new ValType[Size];
-		}
-
-		StartIndex = v.StartIndex;
-		//copy(v.pVector, v.pVector + Size, pVector);
-		for (int i = 0; i < Size; i++)
-			pVector[i] = v.pVector[i];
+		delete[] pVector;
+		pVector = new ValType[v.Size];
+		Size = v.Size;
 	}
+	StartIndex = v.StartIndex;
+	for (int i = 0; i < Size; i++)
+		pVector[i] = v.pVector[i];
+
 	return *this;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // прибавить скаляр
 TVector<ValType> TVector<ValType>::operator+(const ValType &val)
 {
-	TVector<ValType> temp(*this);
+	TVector<ValType> temp(Size, StartIndex);
 	for (int i = 0; i < Size; i++)
-		temp.pVector[i] = temp.pVector[i] + val;
+		temp.pVector[i] = pVector[i] + val;
+
 	return temp;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // вычесть скаляр
 TVector<ValType> TVector<ValType>::operator-(const ValType &val)
 {
-	TVector<ValType> temp(size);
+	TVector<ValType> temp(Size, StartIndex);
 	for (int i = 0; i < Size; i++)
-		temp.pVector[i] = temp.pVector[i] - val;
+		temp.pVector[i] = pVector[i] - val;
+
 	return temp;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // умножить на скаляр
 TVector<ValType> TVector<ValType>::operator*(const ValType &val)
 {
-	TVector<ValType> temp(size);
+	TVector<ValType> temp(Size, StartIndex);
 	for (int i = 0; i < Size; i++)
-		temp.pVector[i] = temp.pVector[i] * val;
+		temp.pVector[i] = pVector[i] * val;
+
 	return temp;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сложение
 TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 {
-	if (Size == v.Size)
-	{
-		for (int i = 0; i < Size; i++)
-			tmp.pVector[i] = pVector[i] + v.pVector[i];
-	}
-	else
-		throw("Incorrect data");
+	if (Size != v.Size)
+		throw "Different Sizes";
+	TVector<ValType> temp(*this);
+	for (int i = 0; i < Size; i++)
+		temp.pVector[i] = pVector[i] + v.pVector[i];
 
 	return temp;
 } /*-------------------------------------------------------------------------*/
@@ -187,13 +184,11 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 template <class ValType> // вычитание
 TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 {
-	if (Size == v.Size)
-	{
-		for (int i = 0; i < Size; i++)
-			temp.pVector[i] = pVector[i] - v.pVector[i];
-	}
-	else
-		throw("Incorrect data");
+	if (Size != v.Size)
+		throw "Different Sizes";
+	TVector<ValType> temp(*this);
+	for (int i = 0; i < Size; i++)
+		temp.pVector[i] = pVector[i] + v.pVector[i];
 
 	return temp;
 } /*-------------------------------------------------------------------------*/
@@ -201,21 +196,13 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 template <class ValType> // скалярное произведение
 ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 {
-	TVector<ValType> temp(Size);
-	ValType rez = 0;
-	if (Size == v.Size)
-	{
-		for (int i = 0; i < Size; i++)
-		{
-			temp.pVector[i] = pVector[i] * v.pVector[i];
-			rez += temp.pVector[i];
-		}
+	{ if (Size != v.Size)
+		throw "Different Sizes";
+	ValType scal = 0;
+	for (int i = 0; i < Size; i++)
+		scal += pVector[i] * v.pVector[i];
 
-	}
-	else
-		throw("Incorrect data");
-
-	return rez;
+	return scal;
 
 } /*-------------------------------------------------------------------------*/
 
