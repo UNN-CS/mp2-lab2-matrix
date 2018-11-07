@@ -234,7 +234,7 @@ TMatrix<ValType>::TMatrix(int s): TVector<TVector<ValType> >(s)
 {
 	if ((s>0)&&(s<=MAX_MATRIX_SIZE))
 		for (int i=0; i<s; i++)
-			pVector[i] = TVector<ValType> (s, 0);
+			this->pVector[i] = TVector<ValType> (s, 0);
 	else throw -1;
 } /*-------------------------------------------------------------------------*/
 
@@ -250,11 +250,11 @@ template <class ValType> // сравнение
 bool TMatrix<ValType>::operator==(const TMatrix<ValType> &mt) const
 {
 	bool flag = true;
-	if (Size != mt.Size) flag = false;
+	if (this->Size != mt.Size) flag = false;
 	else
-		for (int i=0; i<Size; i++)
+		for (int i=0; i<this->Size; i++)
 		{
-			if (pVector[i] != mt.pVector[i]) flag = false;
+			if (this->pVector[i] != mt.pVector[i]) flag = false;
 			break;
 		}
 	return flag;
@@ -270,26 +270,26 @@ bool TMatrix<ValType>::operator!=(const TMatrix<ValType> &mt) const
 template <class ValType> // присваивание
 TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 {
-	Size = mt.Size;
-	StartIndex = mt.StartIndex;
-	delete []pVector;
-	pVector = new TVector<ValType>[Size];
-		for (int i = 0; i< Size; i++)
-			pVector[i] = mt.pVector[i];
+	this->Size = mt.Size;
+	this->StartIndex = mt.StartIndex;
+	delete []this->pVector;
+	this->pVector = new TVector<ValType>[Size];
+		for (int i = 0; i< this->Size; i++)
+			this->pVector[i] = mt.pVector[i];
 	return *this;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сложение
 TMatrix<ValType> TMatrix<ValType>::operator+(const TMatrix<ValType> &mt)
 {
-	if (Size == mt.Size) return TVector<TVector<ValType> >::operator+(mt);
+	if (this->Size == mt.Size) return TVector<TVector<ValType> >::operator+(mt);
 	else throw -1;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // вычитание
 TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
 {
-	if (Size == mt.Size) return TVector<TVector<ValType> >::operator-(mt);
+	if (this->Size == mt.Size) return TVector<TVector<ValType> >::operator-(mt);
 	else throw -1;
 } /*-------------------------------------------------------------------------*/
 
