@@ -250,7 +250,7 @@ TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 		if (this->Size != mt.Size)
 		{
 			this->Size = mt.Size;
-			delete[]pVector;
+			delete[]this->pVector;
 			this->pVector = new TVector<ValType>[mt.Size];
 		}
 		for (int i = 0; i < this->Size; ++i)
