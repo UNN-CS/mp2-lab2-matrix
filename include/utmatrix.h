@@ -83,7 +83,7 @@ TVector<ValType>::TVector(const TVector<ValType> &v)
 template <class ValType>
 TVector<ValType>::~TVector()
 {
-	delete[]pVector;
+	delete[]this->pVector;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // доступ
