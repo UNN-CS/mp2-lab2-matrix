@@ -6,26 +6,60 @@
 // Тестирование верхнетреугольной матрицы
 
 #include <iostream>
+#include <cstdlib>
 #include "utmatrix.h"
+using namespace std;
 //---------------------------------------------------------------------------
 
-Int main()
+void main()
 {
-  TMatrix<int> a(5), b(5), c(5);
-  int i, j;
+	try
+	{
+		TMatrix<int> a(5), b(5), c(5), d(5);
+		int i, j, size, num;
 
-  setlocale(LC_ALL, "Russian");
-  cout << "Тестирование программ поддержки представления треугольных матриц"
-    << endl;
-  for (i = 0; i < 5; i++)
-    for (j = i; j < 5; j++ )
-    {
-      a[i][j] =  i * 10 + j;
-      b[i][j] = (i * 10 + j) * 100;
-    }
-  c = a + b;
-  cout << "Matrix a = " << endl << a << endl;
-  cout << "Matrix b = " << endl << b << endl;
-  cout << "Matrix c = a + b" << endl << c << endl;
+		setlocale(LC_ALL, "Russian");
+		cout << "Тестирование программ поддержки представления треугольных матриц" << endl;
+		cout << "Введите размер матриц A и B:" << endl;
+		cin >> size;
+		TMatrix<int> A(size), B(size), Temp(size);
+		cout << "Введите 0, если хотите ввести матрицы вручную, или 1 для автоматического заполнения." << endl;
+		cin >> num;
+		if (num == 0)
+		{
+			cout << "Введите матрицу А:" << endl;
+			cin >> A;
+			cout << "Введите матрицу B" << endl;
+			cin >> B;
+		}
+		else
+		{
+			for (i = 0; i < size; i++)
+				for (j = i; j < size; j++ )
+				{
+					A[i][j] = rand() % 11;
+					B[i][j] = rand() % 11;
+				}
+			cout << "Матрица А:" << endl;
+			cout << A << endl;
+			cout << "Матрица В:" << endl;
+			cout << B << endl;
+		}
+		cout << "A = B ?" << endl;
+		if (A == B)
+			cout << "Да." << endl;
+		else
+			cout << "Нет." << endl;
+		cout << "A + B = ?" << endl;
+		Temp = (A + B);
+		cout << Temp << endl;
+		cout << "A - B = ?" << endl;
+		Temp = A - B;
+		cout << Temp << endl;
+	}
+	catch(const string *err)
+	{
+		cout << err << endl;
+	}
 }
 //---------------------------------------------------------------------------
