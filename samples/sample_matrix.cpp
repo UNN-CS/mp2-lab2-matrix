@@ -9,7 +9,7 @@
 #include "utmatrix.h"
 //---------------------------------------------------------------------------
 
-void main()
+int main()
 {
   TMatrix<int> a(5), b(5), c(5);
   int i, j;
@@ -27,5 +27,7 @@ void main()
   cout << "Matrix a = " << endl << a << endl;
   cout << "Matrix b = " << endl << b << endl;
   cout << "Matrix c = a + b" << endl << c << endl;
+ 
+  return 0;
 }
 //---------------------------------------------------------------------------
