@@ -4,6 +4,7 @@
 
 TEST(TVector, can_create_vector_with_positive_length)
 {
+
   ASSERT_NO_THROW(TVector<int> v(5));
 }
 
@@ -31,12 +32,30 @@ TEST(TVector, can_create_copied_vector)
 
 TEST(TVector, copied_vector_is_equal_to_source_one)
 {
-  ADD_FAILURE();
+	TVector<int> v(3);
+	//v = (4, 3, -2)
+	v[0] = 4;
+	v[1] = 3;
+	v[2] = -2;
+	TVector<int> vt(v);
+
+	EXPECT_EQ(v, vt);
 }
 
 TEST(TVector, copied_vector_has_its_own_memory)
 {
-  ADD_FAILURE();
+	TVector<int> v(3);
+	//v = (1, 1, -1)
+	v[0] = 1;
+	v[1] = 1;
+	v[2] = -1;
+
+	TVector<int> vt(v);
+	TVector<int> *p, *pt;
+	p = &v;
+	pt = &vt;
+
+	EXPECT_NE(p, pt);
 }
 
 TEST(TVector, can_get_size)
@@ -73,17 +92,49 @@ TEST(TVector, throws_when_set_element_with_too_large_index)
 
 TEST(TVector, can_assign_vector_to_itself)
 {
-  ADD_FAILURE();
+	const int size = 3;
+	TVector<int> v(size, 1), vt(size, 1);
+	// v = (2, 1, 0)
+	v[1] = 2;
+	v[2] = 1;
+	v[3] = 0;
+	// vt = (2, 1, 0)
+	vt[1] = 2;
+	vt[2] = 1;
+	vt[3] = 0;
+	v = v;
+
+	EXPECT_EQ(vt, v);
 }
 
 TEST(TVector, can_assign_vectors_of_equal_size)
 {
-  ADD_FAILURE();
+	const int sizev = 3, sizevt = 1;
+	TVector<int> v(sizev, 1), vt(sizevt, 1);
+	// v = (2, 1, 0)
+	v[1] = 2;
+	v[2] = 1;
+	v[3] = 0;
+	// vt = (10)
+	vt[1] = 10;
+	v = vt;
+
+	EXPECT_EQ(sizevt, v.GetSize());
 }
 
 TEST(TVector, assign_operator_change_vector_size)
 {
-  ADD_FAILURE();
+	const int sizev = 3, sizevt = 1;
+	TVector<int> v(sizev, 1), vt(sizevt, 1);
+	// v = (2, 1, 0)
+	v[1] = 2;
+	v[2] = 1;
+	v[3] = 0;
+	// vt = (10)
+	vt[1] = 10;
+	v = vt;
+
+	EXPECT_EQ(sizevt, v.GetSize());
 }
 
 TEST(TVector, can_assign_vectors_of_different_size)
