@@ -130,7 +130,7 @@ bool TVector<ValType>::operator==(const TVector &v) const
 template <class ValType> // сравнение
 bool TVector<ValType>::operator!=(const TVector &v) const
 {
-    return !(*this = v) ; // если не равно (через предыдущий оператор)
+    return !(*this == v) ; // если не равно (через предыдущий оператор)
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // присваивание
@@ -277,10 +277,11 @@ TMatrix<ValType>::TMatrix(const TVector<TVector<ValType> > &mt):
 template <class ValType> // сравнение
 bool TMatrix<ValType>::operator==(const TMatrix<ValType> &mt) const
 {
-
+	return TVector<TVector<ValType>> :: operator==(mt);
+	/*
     if (this == &mt)
         return true;
-    if (this->Size != mt->Size)
+    if (this->Size != mt.Size)
         return false;
     for (int i = 0; i < this->Size; i++)
     {
@@ -288,7 +289,7 @@ bool TMatrix<ValType>::operator==(const TMatrix<ValType> &mt) const
             return false;
     }
     return true; // если всё хорошо
-
+	*/
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сравнение
@@ -327,7 +328,10 @@ TMatrix<ValType> TMatrix<ValType>::operator+(const TMatrix<ValType> &mt)
 {
     if (this->Size != mt.Size)
         throw "NotEqualSizeOfMatrix";
-    TMatrix<ValType> matrix = TMatrix<ValType> (*this); // копируем матрицу
+
+	return TVector<TVector<ValType>> :: operator+(mt);
+    /*
+	TMatrix<ValType> matrix = TMatrix<ValType> (*this); // копируем матрицу
     int n = this->GetSize(); // количество строк в матрице
     for (int i = 0; i < n; i++)
     {
@@ -335,6 +339,7 @@ TMatrix<ValType> TMatrix<ValType>::operator+(const TMatrix<ValType> &mt)
     }
 
     return matrix;
+	*/
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // вычитание
@@ -342,14 +347,16 @@ TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
 {
     if (this->Size != mt.Size)
         throw "NotEqualSizeOfMatrix";
-    TMatrix<ValType> matrix = TMatrix<ValType> (*this); // копируем матрицу
+	return TVector<TVector<ValType>> :: operator-(mt);
+    /*TMatrix<ValType> matrix = TMatrix<ValType> (*this); // копируем матрицу
     int n = this->GetSize(); // количество строк в матрице
     for (int i = 0; i < n; i++)
     {
-        matrix.pVector[i] -= mt.pVector[i];
+        matrix.pVector[i] = matrix.pVector[i] - mt.pVector[i];
     }
 
     return matrix;
+	*/
 } /*-------------------------------------------------------------------------*/
 
 // TVector О3 Л2 П4 С6

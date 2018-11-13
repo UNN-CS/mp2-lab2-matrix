@@ -1,6 +1,7 @@
-#include "C:\Users\1\Documents\Visual Studio 2015\Projects\mp2-lab2-matrix-1\include\utmatrix.h"
+#include "utmatrix.h"
 
-#include <gtest/gtest.h>
+//#include <gtest/gtest.h>
+#include "gtest.h"
 
 TEST(TMatrix, can_create_matrix_with_positive_length)
 {
