@@ -216,6 +216,8 @@ TEST(TVector, cant_multiply_vectors_with_not_equal_size)
     ASSERT_NO_THROW(v1 * v2);
 }
 
+/*-----------------------------------MY TESTS(6)-----------------------------------*/
+
 TEST(TVector, addition_vectors_works_right)
 {
     TVector<int> v1(5), v2(5), v3(5);
