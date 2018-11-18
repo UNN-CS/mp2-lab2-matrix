@@ -221,14 +221,14 @@ TMatrix<ValType>::TMatrix(int s) : TVector<TVector<ValType>> (s)
 {	
 	if ((s > MAX_MATRIX_SIZE)||(s <= 0)) throw -1;
 	for (int i = 0; i < s; i++)
-		pVector[i] = TVector<ValType>(s - i, i);
+		this->pVector[i] = TVector<ValType>(s - i, i);
 }
 template <class ValType> // конструктор копирования
 TMatrix<ValType>::TMatrix(const TMatrix<ValType> &mt) :
 	TVector<TVector<ValType> >(mt)
 {
 	for (int i = 0; i < size; i++)
-		pVector[i] = TVector<ValType>(mt.pVector[i]);;
+		this->pVector[i] = TVector<ValType>(mt.pVector[i]);;
 }
 
 template <class ValType> // конструктор преобразования типа
@@ -264,20 +264,20 @@ TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 template <class ValType> // сложение
 TMatrix<ValType> TMatrix<ValType>::operator+(const TMatrix<ValType> &mt)
 {
-	if (size != mt.size) throw -1;
-	TMatrix<ValType> tmp(size);
-	for (int i = 0; i < size; i++)
-		tmp[i] = pVector[i] + mt.pVector[i];
+	if (this->size != mt.size) throw -1;
+	TMatrix<ValType> tmp(this->size);
+	for (int i = 0; i < this->size; i++)
+		tmp[i] = this->pVector[i] + mt.pVector[i];
 	return tmp;
 }
 
 template <class ValType> // вычитание
 TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
 {
-	if (size != mt.size) throw - 1;
-	TMatrix<ValType> tmp(size);
-	for (int i = 0; i < size; i++)
-		tmp[i] = pVector[i] - mt.pVector[i];
+	if (this->size != mt.size) throw - 1;
+	TMatrix<ValType> tmp(this->size);
+	for (int i = 0; i < this->size; i++)
+		tmp[i] = this->pVector[i] - mt.pVector[i];
 	return tmp;
 }
 
