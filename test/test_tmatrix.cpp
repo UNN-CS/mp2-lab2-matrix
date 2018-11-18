@@ -150,3 +150,44 @@ TEST(TMatrix, cant_subtract_matrixes_with_not_equal_size)
 	m2[2][2] = 6;
 	ASSERT_ANY_THROW(m1 - m2);
 }
+//other tests
+TEST(TMatrix, compare_matrices_after_add)
+{
+	TMatrix<int> m1(3);
+	TMatrix<int> m2(m1);
+	TMatrix<int> exp = m2 + m1;
+
+	EXPECT_EQ(exp, m2);
+}
+
+TEST(TMatrix, compare_matrices_after_subtract)
+{
+	TMatrix<int> m1(3);
+	TMatrix<int> m2(m1);
+	TMatrix<int> exp = m2 - m1;
+
+	EXPECT_EQ(exp, m2);
+}
+
+TEST(TMatrix, check_operator_unequal_with_equal_matrices)
+{
+	TMatrix<int> m1(3);
+	TMatrix<int> m2(m1);
+
+	EXPECT_EQ(false, m1 != m2);
+}
+
+TEST(TMatrix, check_operator_unequal_matrices_not_equal_size)
+{
+	TMatrix<int> m1(3);
+	TMatrix<int> m2(5);
+
+	EXPECT_EQ(true, m1 != m2);
+}
+
+TEST(TMatrix, check_operator_unequal_with_itself)
+{
+	TMatrix<int> m(3);
+
+	EXPECT_EQ(false, m != m);
+}

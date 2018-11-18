@@ -195,3 +195,46 @@ TEST(TVector, cant_multiply_vectors_with_not_equal_size)
 	TVector<int> v1(4), v2(5);
 	ASSERT_ANY_THROW(v1*v2);
 }
+//other tests
+TEST(TVector, check_operator_unequal_with_equal_vectors)
+{
+	TVector<int> v1(3);
+	TVector<int> v2(v1);
+
+	EXPECT_EQ(false, v1 != v2);
+}
+
+TEST(TVector, check_operator_unequal_vectors_not_equal_size)
+{
+	TVector<int> v1(3);
+	TVector<int> v2(4);
+
+	EXPECT_EQ(true, v1 != v2);
+
+}
+
+TEST(TVector, compare_after_add_scalar)
+{
+	TVector<int> v1(3);
+	TVector<int> v2(v1);
+
+	EXPECT_NE(v1 + 2, v2);
+}
+
+TEST(TVector, compare_after_subtract_scalar)
+{
+	TVector<int> v1(3);
+	TVector<int> v2(v1);
+
+	EXPECT_NE(v1 - 2, v2);
+}
+
+TEST(TVector, compare_after_set_element)
+{
+	TVector<int> v1(3);
+	TVector<int> v2(v1);
+
+	v1[1] = 8;
+
+	EXPECT_NE(v1, v2);
+}
