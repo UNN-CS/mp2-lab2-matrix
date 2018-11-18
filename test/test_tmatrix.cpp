@@ -140,14 +140,14 @@ TEST(TMatrix, cant_subtract_matrixes_with_not_equal_size)
 	ASSERT_ANY_THROW(m1 - m);
 }
 
-TEST(TMatrix, operator_unequal_for_matrix_with_not_equal_size_return_true)
+TEST(TMatrix, operator_not_equal_return_true_with_not_equal_matrix)
 {
 	TMatrix<int> m(5);
 	TMatrix<int> m1(10);
 	EXPECT_EQ(true, m1 != m);
 }
 
-TEST(TMatrix, operator_inequality_for_matrix_and_itself_return_false)
+TEST(TMatrix, operator_not_equal_return_false_with_matrix_and_itself)
 {
 	TMatrix<int> m(5);
 	EXPECT_EQ(false, m != m);
