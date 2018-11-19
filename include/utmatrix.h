@@ -65,8 +65,8 @@ TVector<ValType>::TVector(int s, int si)
     if (s > MAX_VECTOR_SIZE || s < 0 || si < 0) throw -1;
     this -> Size = s;
     this -> StartIndex = si;
-	this -> pVector = new ValType[Size];
-    for (int i = 0; i < Size; i++)
+	this -> pVector = new ValType[this->Size];
+    for (int i = 0; i < this->Size; i++)
 		this->pVector[i] = 0;
 } /*-------------------------------------------------------------------------*/
 
@@ -75,8 +75,8 @@ TVector<ValType>::TVector(const TVector<ValType> &v)
 {
 	this->Size = v.Size;
 	this->StartIndex = v.StartIndex;
-	this->pVector = new ValType[Size];
-    for (int i = 0; i < Size; i++)
+	this->pVector = new ValType[this->Size];
+    for (int i = 0; i < this->Size; i++)
 		this->pVector[i] = v.pVector[i];
 } /*-------------------------------------------------------------------------*/
 
@@ -89,7 +89,7 @@ TVector<ValType>::~TVector()
 template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
-    if (pos - StartIndex < 0 || pos - StartIndex >= Size) throw -1;
+    if (pos - StartIndex < 0 || pos - StartIndex >= this->Size) throw -1;
     return this->pVector[pos - StartIndex];
 } /*-------------------------------------------------------------------------*/
 
@@ -97,7 +97,7 @@ template <class ValType> // сравнение
 bool TVector<ValType>::operator==(const TVector &v) const
 {
     if (this->Size != v.Size || this->StartIndex != v.StartIndex) return false;
-    for (int i = 0; i < Size; i++)
+    for (int i = 0; i < this->Size; i++)
         if (this->pVector[i] != v.pVector[i]) return false;
     return true;
 } /*-------------------------------------------------------------------------*/
@@ -116,7 +116,7 @@ TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 	if (this->pVector != NULL) delete [] pVector;
 	this->Size = v.Size;
 	this->StartIndex = v.StartIndex;
-	this->pVector = new ValType[Size];
+	this->pVector = new ValType[this->Size];
 	for (int i = 0; i < this->Size; i++)
 		this->pVector[i] = v.pVector[i];
 	return *this;
@@ -164,7 +164,7 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 {
     if (this->Size != v.Size || this->StartIndex != v.StartIndex) throw -1;
     TVector tmp(* this);
-    for (int i = 0; i < Size; i++)
+    for (int i = 0; i < this->Size; i++)
         tmp.pVector[i] = tmp.pVector[i] - v.pVector[i];
     return tmp;
 } /*-------------------------------------------------------------------------*/
@@ -174,7 +174,7 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 {
     if (this->Size != v.Size || this->StartIndex != v.StartIndex) throw -1;
     ValType tmp = 0;
-    for (int i = 0; i < Size; i++)
+    for (int i = 0; i < this->Size; i++)
         tmp += this->pVector[i] * v.pVector[i];
     return tmp;
 } /*-------------------------------------------------------------------------*/
@@ -250,7 +250,7 @@ TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
         delete [] this->pVector;
 		this->Size = mt.Size;
 		this->StartIndex = mt.StartIndex;
-		this->pVector = new TVector<ValType>[Size];
+		this->pVector = new TVector<ValType>[this->Size];
         for (int i = 0; i < this->Size; ++i)
 			this->pVector[i] = mt.pVector[i];
     }
