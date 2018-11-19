@@ -65,8 +65,8 @@ public:
 template <class ValType>
 TVector<ValType>::TVector(int s, int si)
 {
-  if (si < 0 || si > MAX_VECTOR_SIZE) throw out_of_range("Unexpected start index");
-  if (s < 0 || s > MAX_VECTOR_SIZE) throw out_of_range("Unexpected size");
+  if (si < 0 || si > MAX_VECTOR_SIZE) throw out_of_range("Unexpected start index!");
+  if (s < 0 || s > MAX_VECTOR_SIZE) throw out_of_range("Unexpected size!");
 
   Size = s;
   StartIndex = si;
@@ -95,7 +95,7 @@ TVector<ValType>::~TVector()
 template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
-  if ((pos < 0) || (pos > Size - 1)) throw out_of_range("Unexpected start index");
+  if ((pos < 0) || (pos > Size - 1)) throw out_of_range("Unexpected start index!");
   return pVector[pos];
 } /*-------------------------------------------------------------------------*/
 
@@ -247,7 +247,7 @@ public:
 template <class ValType>
 TMatrix<ValType>::TMatrix(int s): TVector<TVector<ValType> >(s)
 {
-  if (s < 0 || s > MAX_MATRIX_SIZE) throw out_of_range("Unexpected size");
+  if (s < 0 || s > MAX_MATRIX_SIZE) throw out_of_range("Unexpected size!");
 
   for (int i = 0; i < s; i++)
   {
