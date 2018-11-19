@@ -8,7 +8,7 @@ matrix:
           - ubuntu-toolchain-r-test
           - llvm-toolchain-trusty-7
         packages:
-          - g++-8
+          - gcc-8
           - clang-7
 compiler:
   - gcc
