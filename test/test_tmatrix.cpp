@@ -52,8 +52,7 @@ TEST(TMatrix, can_get_size)
 TEST(TMatrix, can_set_and_get_element)
 {
     TMatrix<int> m(5);
-    m[5][5] = 7;
-    ASSERT_EQ(7, m[5][5]);
+    ASSERT_NO_THROW(m[3][3] = 7);
 }
 
 TEST(TMatrix, throws_when_set_element_with_negative_index)
@@ -77,14 +76,14 @@ TEST(TMatrix, can_assign_matrix_to_itself)
 TEST(TMatrix, can_assign_matrices_of_equal_size)
 {
     TMatrix<int> m1(5), m2(5);
-    m2[5][5] = 7;
+    m2[3][3] = 7;
     ASSERT_NO_THROW(m1 = m2);
 }
 
 TEST(TMatrix, assign_operator_change_matrix_size)
 {
     TMatrix<int> m1(5), m2(6);
-    m1 = m2
+	m1 = m2;
     ASSERT_EQ(m1.GetSize(), 6);
 }
 
