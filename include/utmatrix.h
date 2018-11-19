@@ -63,8 +63,8 @@ public:
 template <class ValType>
 TVector<ValType>::TVector(int s, int si)
 {
-  if (si < 0 || si > MAX_VECTOR_SIZE) throw new out_of_range("Unexpected start index");
-  if (s < 0 || s > MAX_VECTOR_SIZE) throw out_of_range("Unexpected vector size");
+  if (si < 0 || si > MAX_VECTOR_SIZE) throw out_of_range();
+  if (s < 0 || s > MAX_VECTOR_SIZE) throw out_of_range();
 
   Size = s;
   StartIndex = si;
@@ -93,7 +93,7 @@ TVector<ValType>::~TVector()
 template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
-  if ((pos < 0) || (pos > Size - 1)) throw new out_of_range("Unexpected index");
+  if ((pos < 0) || (pos > Size - 1)) throw out_of_range(;
   return pVector[pos];
 } /*-------------------------------------------------------------------------*/
 
@@ -170,7 +170,7 @@ TVector<ValType> TVector<ValType>::operator*(const ValType &val)
 template <class ValType> // сложение
 TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 {
-  if (Size != v.Size) throw new exception();
+  if (Size != v.Size) throw exception();
 
   TVector tempVector(Size, StartIndex);
 
@@ -185,7 +185,7 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 template <class ValType> // вычитание
 TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 {
-  if (Size != v.Size) throw new exception();
+  if (Size != v.Size) throw exception();
 
   TVector tempVector(Size, StartIndex);
 
@@ -200,7 +200,7 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 template <class ValType> // скалярное произведение
 ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 {
-  if (Size != v.Size) throw new exception();
+  if (Size != v.Size) throw exception();
 
   ValType *tempVector = new ValType[1];
 
@@ -245,7 +245,7 @@ public:
 template <class ValType>
 TMatrix<ValType>::TMatrix(int s): TVector<TVector<ValType> >(s)
 {
-  if (s < 0 || s > MAX_MATRIX_SIZE) throw new out_of_range("Unexpected matrix size");
+  if (s < 0 || s > MAX_MATRIX_SIZE) throw out_of_range();
 
   for (int i = 0; i < s; i++)
   {
