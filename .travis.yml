@@ -2,7 +2,7 @@ language: cpp
 addon:
   apt:
     sources:
-      - ubuntu-toolchain-r/test
+      - ubuntu-toolchain-r-test
       - llvm-toolchain-7
     packages:
       - gcc-8
