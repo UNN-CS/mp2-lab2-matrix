@@ -216,7 +216,7 @@ public:
 };
 
 template <class ValType>
-TMatrix<ValType>::TMatrix(int s) : TVector<TVector<ValType>> (s)
+TMatrix<ValType>::TMatrix(int s) : TVector< TVector<ValType> > (s)
 {	
 	if ((s > MAX_MATRIX_SIZE)||(s <= 0)) throw -1;
 	for (int i = 0; i < s; i++)
