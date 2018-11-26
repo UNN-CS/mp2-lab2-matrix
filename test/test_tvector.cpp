@@ -43,7 +43,6 @@ TEST(TVector, copied_vector_has_its_own_memory)
 	TVector<int> a(2);
 	a[0] = 0; a[1] = 10;
 	TVector<int> b(a);
-	//EXPECT_NE(&a, &b);// как сравнить указатели на массив?
 	EXPECT_NE(&a[0], &b[0]);
 
 	//ADD_FAILURE();
