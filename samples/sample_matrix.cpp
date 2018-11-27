@@ -27,5 +27,7 @@ void main()
   cout << "Matrix a = " << endl << a << endl;
   cout << "Matrix b = " << endl << b << endl;
   cout << "Matrix c = a + b" << endl << c << endl;
+  c = b - a;
+  cout << "Matrix c = b - a" << endl << c << endl;
 }
 //---------------------------------------------------------------------------
