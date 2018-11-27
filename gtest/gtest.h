@@ -48,7 +48,7 @@
 // registration from Barthelemy Dagenais' (barthelemy@prologique.com)
 // easyUnit framework.
 
-#define _VARIADIC_MAX 10
+//#define _VARIADIC_MAX 10
 
 #ifndef GTEST_INCLUDE_GTEST_GTEST_H_
 #define GTEST_INCLUDE_GTEST_GTEST_H_
