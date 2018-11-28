@@ -41,7 +41,7 @@ TEST(TMatrix, copied_matrix_has_its_own_memory)
 TEST(TMatrix, can_get_size)
 {
 	TMatrix<int> m(5);
-	EXPECT_EQ(5, m.GetSize());
+	ASSERT_NO_THROW(m.GetSize());
 
 	//ADD_FAILURE();
 }
@@ -49,8 +49,7 @@ TEST(TMatrix, can_get_size)
 TEST(TMatrix, can_set_and_get_element)
 {
 	TMatrix<int> m(5);
-	m[0][0] = 15;
-	EXPECT_EQ(15, m[0][0]);
+	ASSERT_NO_THROW(m[0][0]);
 	//ADD_FAILURE();
 }
 
@@ -97,8 +96,6 @@ TEST(TMatrix, can_assign_matrices_of_different_size)
 {
 	TMatrix<int> m(5); m[0][0] = 1;
 	TMatrix<int> t(6); t[0][0] = 15;
-	m = t;
-	//EXPECT_EQ(15, m[0][0]);
 	ASSERT_NO_THROW(m = t);
 	//ADD_FAILURE();
 }
@@ -154,3 +151,70 @@ TEST(TMatrix, cant_subtract_matrixes_with_not_equal_size)
 	//ADD_FAILURE();
 }
 
+/*My tests*/
+TEST(TMatrix, can_correctly_get_size)
+{
+	TMatrix<int> m(5);
+	EXPECT_EQ(5, m.GetSize());
+}
+TEST(TMatrix, can_correctly_assign_matrix_to_itself)
+{
+	TMatrix<int> m(5);
+	EXPECT_EQ(m, m = m);
+	//ADD_FAILURE();
+}
+TEST(TMatrix, can_correctly_set_and_get_element)
+{
+	TMatrix<int> m(5);
+	m[0][0] = 15;
+	EXPECT_EQ(15, m[0][0]);
+}
+TEST(TMatrix, can_correctly_add_matrices_with_equal_size)
+{
+	TMatrix <int> m(5), t(5), res(5);
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = i; j < 5; j++)
+		{
+			m[i][j] = i + j;
+			t[i][j] = i + j + 1;
+			res[i][j] = m[i][j] + t[i][j];
+		}
+	}
+	ASSERT_EQ(res, m + t);
+
+}
+TEST(TMatrix, can_correctly_subtract_matrices_with_equal_size)
+{
+	TMatrix <int> m(5), t(5), res(5);
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = i; j < 5; j++)
+		{
+			m[i][j] = i + j;
+			t[i][j] = i + j + 1;
+			res[i][j] = m[i][j] - t[i][j];
+		}
+	}
+	ASSERT_EQ(res, m - t);
+}
+TEST(TMatrix, can_correctly_assign_matrices_of_different_size)
+{
+
+	TMatrix <int> m(5), t(5);
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = i; j < 5; j++)
+		{
+			m[i][j] = i + j;
+			t[i][j] = i + j + 1;
+		}
+	}
+	TMatrix <int> res(t);
+	ASSERT_EQ(res, m = t);
+}
+TEST(TMatrix, can_assign_sum_in_matrix_with_less_size)
+{
+	TMatrix<int> a(5), b(5), c(3);
+	ASSERT_NO_THROW(c = a + b);
+}

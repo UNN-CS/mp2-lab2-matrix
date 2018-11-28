@@ -43,6 +43,7 @@ TEST(TVector, copied_vector_has_its_own_memory)
 	TVector<int> a(2);
 	a[0] = 0; a[1] = 10;
 	TVector<int> b(a);
+	//EXPECT_NE(&a, &b);// как сравнить указатели на массив?
 	EXPECT_NE(&a[0], &b[0]);
 
 	//ADD_FAILURE();
@@ -237,4 +238,22 @@ TEST(TVector, cant_multiply_vectors_with_not_equal_size)
 	v2[0] = 0; v2[1] = 1; v2[2] = 2; v2[3] = 3;
 	EXPECT_ANY_THROW(v1 * v2);
 	//ADD_FAILURE();
+}
+
+/*My test*/
+TEST(TVector, able_to_add_scalar_to_vector)
+{
+	TVector<int> v1(4);
+	v1[0] = 0; v1[1] = 1; v1[2] = 2; v1[3] = 3;
+	EXPECT_NO_THROW(v1 + 1);
+}
+TEST(TVector, able_to_subtract_vectors_with_equal_size)
+{
+	TVector<int> v1(4), v2(4);
+	ASSERT_NO_THROW(v1 - v2);
+}
+TEST(TVector, able_to_multiply_vectors_with_equal_size)
+{
+	TVector<int> v1(4), v2(4);
+	ASSERT_NO_THROW(v1 * v2);
 }
