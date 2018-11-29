@@ -1,4 +1,6 @@
-#include "gtest.h"
+
+#include <gtest.h>
+#include "utmatrix.h"
 
 int main(int argc, char **argv)
 {
