@@ -1,16 +1,17 @@
-// ����, ���, ���� "������ ����������������-2", �++, ���
+
+// ННГУ, ВМК, Курс "Методы программирования-2", С++, ООП
 //
-// sample_matrix.cpp - Copyright (c) ������� �.�. 07.05.2001
-//   ������������ ��� Microsoft Visual Studio 2008 �������� �.�. (20.04.2015)
+// sample_matrix.cpp - Copyright (c) Гергель В.П. 07.05.2001
+//   Переработано для Microsoft Visual Studio 2008 Сысоевым А.В. (20.04.2015)
 //
-// ������������ ����������������� �������
+// Тестирование верхнетреугольной матрицы
 
 #include <iostream>
+#include "utmatrix.h"
+//---------------------------------------------------------------------------
 
-#include "/Users/rootreddragon/Documents/Visual Studio 2017/Projects/gtest-example/matrix/utmatrix.h"
-//---------------------------------------------------------------------------ut
 
-void main()
+int main()
 {
   TMatrix<int> a(5), b(5), c(5);
   int i, j;
@@ -28,5 +29,7 @@ void main()
   cout << "Matrix a = " << endl << a << endl;
   cout << "Matrix b = " << endl << b << endl;
   cout << "Matrix c = a + b" << endl << c << endl;
+
+  return 0;
 }
 //---------------------------------------------------------------------------
