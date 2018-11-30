@@ -1,4 +1,4 @@
-﻿// ННГУ, ВМК, Курс "Методы программирования-2", С++, ООП
+// ННГУ, ВМК, Курс "Методы программирования-2", С++, ООП
 //
 // utmatrix.h - Copyright (c) Гергель В.П. 07.05.2001
 //   Переработано для Microsoft Visual Studio 2008 Сысоевым А.В. (21.04.2015)
@@ -9,6 +9,11 @@
 #define __TMATRIX_H__
 
 #include <iostream>
+#include <algorithm>
+#include <cmath>
+
+
+
 
 using namespace std;
 
