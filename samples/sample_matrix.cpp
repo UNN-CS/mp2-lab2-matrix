@@ -30,6 +30,5 @@ int main()
   cout << "Matrix b = " << endl << b << endl;
   cout << "Matrix c = a + b" << endl << c << endl;
 
-  return 0;
 }
 //---------------------------------------------------------------------------
