@@ -130,7 +130,7 @@ TEST(TVector, assign_operator_change_vector_size)
 	}
 	v1 = v2;
 
-	EXPECT_EQ(v1.GetSize(), v2.GetSize());
+	EXPECT_EQ(v2.GetSize(), v1.GetSize());
 }
 
 TEST(TVector, can_assign_vectors_of_different_size)
@@ -186,7 +186,7 @@ TEST(TVector, vectors_with_different_size_are_not_equal)
 		v2[i] = i + 1;
 	}
 
-	EXPECT_FALSE(v1 == v2);
+	EXPECT_TRUE(v1 != v2);
 }
 
 TEST(TVector, can_add_scalar_to_vector)
@@ -317,4 +317,3 @@ TEST(TVector, cant_multiply_vectors_with_not_equal_size)
 
 	ASSERT_ANY_THROW(v1 = v1 * v2);
 }
-

@@ -62,14 +62,14 @@ public:
 template <class ValType>
 TVector<ValType>::TVector(int s, int si)
 {
-    if (s < 1)
+    if (s < 0)
     {
-        throw "nonpositive size";
+        throw "negative size";
     }
     
     if (si < 0)
     {
-        throw "nonpositive SI";
+        throw "negative SI";
     }
     
     if (s > MAX_VECTOR_SIZE || si > MAX_VECTOR_SIZE)
@@ -161,6 +161,8 @@ TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
             pVector = new ValType[Size];
         }
         
+		StartIndex = v.StartIndex;
+
         for (int i = 0; i < Size; ++i)
         {
             pVector[i] = v.pVector[i];
@@ -239,7 +241,7 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
     
     for (int i = 0; i < Size; ++i)
     {
-        Tmp.pVector[i] += v.pVector[i];
+        Tmp.pVector[i] = Tmp.pVector[i] + v.pVector[i];
     }
     
     return Tmp;
@@ -275,7 +277,7 @@ TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
     
     for (int i = 0; i < Size; ++i)
     {
-        Tmp.pVector[i] -= v.pVector[i];
+        Tmp.pVector[i] = Tmp.pVector[i] - v.pVector[i];
     }
     
     return Tmp;
@@ -352,9 +354,9 @@ public:
 template <class ValType>
 TMatrix<ValType>::TMatrix(int s): TVector<TVector<ValType> >(s)
 {
-    if (s < 1)
+    if (s < 0)
     {
-        throw "nonpositive size";
+        throw "negative size";
     }
     
     if (s > MAX_MATRIX_SIZE)
@@ -423,7 +425,7 @@ TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
             delete[] pVector;
             pVector = new TVector<ValType>[Size];
         }
-        
+
         for (int i = 0; i < Size; ++i)
         {
             pVector[i] = mt.pVector[i];
