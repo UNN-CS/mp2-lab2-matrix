@@ -320,14 +320,14 @@ TMatrix<ValType> TMatrix<ValType>::operator+(const TMatrix<ValType> &mt)
 		res.pVector[i] = res.pVector[i] + mt.pVector[i];
 	}
 	return res;*/
-	return TVector<TVector<ValType>>(*this) + mt;
+	return TVector<TVector<ValType> >(*this) + mt;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // вычитание
 TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
 {
 	if (this->Size != mt.Size) throw(-1);
-	return TVector<TVector<ValType>>(*this) - mt;
+	return TVector<TVector<ValType> >(*this) - mt;
 } /*-------------------------------------------------------------------------*/
 
 // TVector О3 Л2 П4 С6
