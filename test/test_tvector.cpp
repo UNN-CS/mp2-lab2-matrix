@@ -1,5 +1,4 @@
 #include "utmatrix.h"
-
 #include <gtest.h>
 
 TEST(TVector, can_create_vector_with_positive_length)
