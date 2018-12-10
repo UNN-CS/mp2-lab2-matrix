@@ -146,3 +146,22 @@ TEST(TMatrix, cant_subtract_matrixes_with_not_equal_size)
 	ASSERT_ANY_THROW(m - m1);
 }
 
+TEST(TVector, can_assign_several_matrix_of_equal_size)
+{
+	TMatrix<int> m(10);
+	TMatrix<int> m1(20);
+	TMatrix<int> m2(20);
+
+	ASSERT_NO_THROW(m = m1 = m2);
+}
+
+TEST(TMatrix, compare_different_matrixes_return_false)
+{
+	TMatrix<int> m(10);
+	TMatrix<int> m1(10);
+	m[1][1] = 1;
+	m1[1][1] = -1;
+
+	EXPECT_EQ(false, m == m1);
+}
+

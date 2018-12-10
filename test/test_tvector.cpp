@@ -230,3 +230,51 @@ TEST(TVector, cant_multiply_vectors_with_not_equal_size)
 	ASSERT_ANY_THROW(v * v1);
 }
 
+TEST(TVector, can_assign_several_vectors_of_equal_size)
+{
+	TVector<int> v(4);
+	TVector<int> v1(4);
+	TVector<int> v2(4);
+
+	ASSERT_NO_THROW(v = v1 = v2);
+}
+
+TEST(TVector, vectors_with_different_startindex_are_not_equal)
+{
+	TVector<int> v(4, 5);
+	for (int i = 0; i < 4; ++i) v[v.GetStartIndex() + i] = i;
+	TVector<int> v1(4, 2);
+	for (int i = 0; i < 4; ++i) v1[v1.GetStartIndex() + i] = i;
+
+	EXPECT_EQ(true, v != v1);
+}
+
+TEST(TVector, test_getstartindex)
+{
+	TVector<int> v(4, 5);
+
+	EXPECT_EQ(5, v.GetStartIndex());
+}
+
+TEST(TVector, test_scalar_product)
+{
+	TVector<int> v(4);
+	for (int i = 0; i < 4; ++i)
+	{
+		v[i] = i;
+	}
+	TVector<int> v1(v);
+
+	int expected = 0;
+	for (int i = 0; i < 4; ++i)
+	{
+		expected += i * i;
+	}
+
+	EXPECT_EQ(expected, v*v1);
+}
+
+TEST(TVector, stop)
+{
+	system("pause");
+}
