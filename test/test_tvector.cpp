@@ -273,8 +273,3 @@ TEST(TVector, test_scalar_product)
 
 	EXPECT_EQ(expected, v*v1);
 }
-
-TEST(TVector, stop)
-{
-	system("pause");
-}
