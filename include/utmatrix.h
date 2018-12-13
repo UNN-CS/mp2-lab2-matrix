@@ -9,10 +9,7 @@
 #define __TMATRIX_H__
 
 #include <iostream>
-#include <gtest/gtest.h>
 
-
-#include <gmock/gmock.h>
 
 
 using namespace std;
