@@ -86,7 +86,7 @@ TEST(TMatrix, assign_operator_change_matrix_size)
 	TMatrix<int> m(10);
 	TMatrix<int> m1(25);
 	m = m1;
-	ASSERT_NO_THROW(25, m.GetSize());
+	EXPECT_EQ(25, m.GetSize());
 }
 
 TEST(TMatrix, can_assign_matrices_of_different_size)
