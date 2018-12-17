@@ -94,7 +94,11 @@ TVector<ValType>::~TVector()
 template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
+<<<<<<< HEAD
 	if (pos < 0 || pos >= Size )
+=======
+	if (pos - StartIndex < 0 || pos - StartIndex >= Size )
+>>>>>>> c577c90f7d0800216d0dc52079484755be8f8c91
 		throw "incorrect index";
 	else
 		return pVector[pos];
@@ -103,7 +107,11 @@ ValType& TVector<ValType>::operator[](int pos)
 template <class ValType> // сравнение
 bool TVector<ValType>::operator==(const TVector &v) const
 {
+<<<<<<< HEAD
 	if (Size != v.Size)
+=======
+	if (Size != v.Size && StartIndex != v.StartIndex)
+>>>>>>> c577c90f7d0800216d0dc52079484755be8f8c91
 		return false;
 	for (int i = 0; i < Size; i++)
 		if (pVector[i] != v.pVector[i])
