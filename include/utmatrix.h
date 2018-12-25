@@ -62,24 +62,23 @@ public:
 template <class ValType> //конструктор
 TVector<ValType>::TVector(int s, int si)
 {
-  if ((s>=0) && (s<=MAX_VECTOR_SIZE) && (si>=0) && (si<=MAX_VECTOR_SIZE))
-  {
-    pVector - new ValType[s];
-    Size =s;
-    StartIndex = si;
-  }
-  else throw("Wrong lenght");
-} /*-------------------------------------------------------------------------*/
+	if ((s <= 0) || (s > MAX_VECTOR_SIZE) || (si < 0) || (si > MAX_VECTOR_SIZE))
+	  throw "Wrong data";
+	Size = s;
+	StartIndex = si;
+	pVector = new ValType[Size];
+}  
+  /*-------------------------------------------------------------------------*/
 
 template <class ValType> //конструктор копирования
 TVector<ValType>::TVector(const TVector<ValType> &v)
 {
-  this->pVector = new ValType[v.Size];
-  this->Size = v.Size; 
-  this->StartIndex = v.StartIndex;
-  for (int i=0; i< this->Size; i++)
+    Size = v.Size; 
+  StartIndex = v.StartIndex;
+  pVector = new ValType[Size];
+  for (int i=0; i< Size; i++)
     {
-      this->pVector[i]=v.pVector[i];
+      pVector[i]=v.pVector[i];
     }
 } /*-------------------------------------------------------------------------*/
 
@@ -198,10 +197,10 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 {
   if (Size != v.Size || StartIndex != v.StartIndex)
    throw "Error";
-  TVector temp(Size,StartIndex);
+  ValType temp=0;
   for (int i=0;i<Size; i++)
   {
-    temp.pVector[i]=this->pVector[i]*v.pVector[i];
+    temp +=this->pVector[i]*v.pVector[i];
   }
   return temp;
 } /*-------------------------------------------------------------------------*/
