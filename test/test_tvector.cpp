@@ -31,12 +31,16 @@ TEST(TVector, can_create_copied_vector)
 
 TEST(TVector, copied_vector_is_equal_to_source_one)
 {
-  ADD_FAILURE();
+  TVector<int> v(10);
+  TVector<int> vcopy(v);
+  ASSERT_EQ(v, vcopy);
 }
 
 TEST(TVector, copied_vector_has_its_own_memory)
 {
-  ADD_FAILURE();
+  TVector<int> v(10);
+  TVector<int> vcopy(v);
+  ASSERT_NE(&v, &vcopy);
 }
 
 TEST(TVector, can_get_size)
@@ -63,91 +67,181 @@ TEST(TVector, can_set_and_get_element)
 
 TEST(TVector, throws_when_set_element_with_negative_index)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+	ASSERT_ANY_THROW(v[-2]);
 }
 
 TEST(TVector, throws_when_set_element_with_too_large_index)
 {
-  ADD_FAILURE();
+  TVector<int>v(4);
+	ASSERT_ANY_THROW(v[5] = 0);
 }
 
 TEST(TVector, can_assign_vector_to_itself)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+  ASSERT_NO_THROW(v = v);
 }
 
 TEST(TVector, can_assign_vectors_of_equal_size)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+  TVector<int> v1(4);
+  ASSERT_NO_THROW(v=v1);
 }
 
 TEST(TVector, assign_operator_change_vector_size)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+	TVector<int> v1(7);
+	v = v1;
+	ASSERT_EQ(7, v.GetSize());
 }
 
 TEST(TVector, can_assign_vectors_of_different_size)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+  TVector<int> v1(10);
+  ASSERT_NO_THROW(v=v1);
 }
 
 TEST(TVector, compare_equal_vectors_return_true)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+  TVector<int> v1(4);
+  for (int i=0;i<4;i++)
+  {
+    v[i]=10;
+    v1[i]=10;
+  }
+  EXPECT_TRUE(v==v1);
 }
 
 TEST(TVector, compare_vector_with_itself_return_true)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+    for (int i=0;i<4;i++)
+  {
+    v[i]=10;
+  }
+  EXPECT_TRUE(v==v);
 }
 
 TEST(TVector, vectors_with_different_size_are_not_equal)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+  TVector<int> v1(10);
+  EXPECT_NE(v, v1);
 }
 
 TEST(TVector, can_add_scalar_to_vector)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+  ASSERT_NO_THROW(v + 10);
 }
 
 TEST(TVector, can_subtract_scalar_from_vector)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+  ASSERT_NO_THROW(v - 2);
 }
 
 TEST(TVector, can_multiply_scalar_by_vector)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+  ASSERT_NO_THROW(v*10);
 }
 
 TEST(TVector, can_add_vectors_with_equal_size)
 {
-  ADD_FAILURE();
+ 	TVector<int> v(4);
+ 	TVector<int> v1(4);
+ 	ASSERT_NO_THROW(v + v1);
 }
 
 TEST(TVector, cant_add_vectors_with_not_equal_size)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+ 	TVector<int> v1(5);
+ 	ASSERT_ANY_THROW(v + v1);
 }
 
 TEST(TVector, can_subtract_vectors_with_equal_size)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+ 	TVector<int> v1(4);
+ 	ASSERT_NO_THROW(v - v1);
 }
 
 TEST(TVector, cant_subtract_vectors_with_not_equal_size)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+ 	TVector<int> v1(5);
+ 	ASSERT_ANY_THROW(v - v1);
 }
 
 TEST(TVector, can_multiply_vectors_with_equal_size)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+ 	TVector<int> v1(4);
+ 	ASSERT_NO_THROW(v*v1);
 }
 
 TEST(TVector, cant_multiply_vectors_with_not_equal_size)
 {
-  ADD_FAILURE();
+  TVector<int> v(4);
+ 	TVector<int> v1(5);
+ 	ASSERT_ANY_THROW(v*v1);
+}
+
+//My tests
+TEST(TVector, can_add_three_vectors_with_equal_size)
+{
+ 	TVector<int> v(4);
+ 	TVector<int> v1(4);
+  TVector<int> v2(4);
+  ASSERT_NO_THROW(v + v1+ v2);
+}
+
+TEST(TVector, cant_add_three_vectors_with_not_equal_size)
+{
+ 	TVector<int> v(4);
+ 	TVector<int> v1(6);
+  TVector<int> v2(9);
+  ASSERT_ANY_THROW(v + v1 + v2);
+}
+
+TEST(TVector, compare_not_equal_vectors_return_false)
+{
+  TVector<int> v(4);
+  TVector<int> v1(5);
+  for (int i=0;i<4;i++)
+  {
+    v[i]=10;
+    v1[i]=7;
+  }
+  EXPECT_FALSE(v==v1);
+}
+
+TEST(TVector, cant_add_vectors_with_not_equal_start_index)
+{
+  TVector<int> v(4,5);
+ 	TVector<int> v1(4,4);
+ 	ASSERT_ANY_THROW(v + v1);
+}
+
+TEST(TVector, cant_subtract_vectors_with_not_equal_start_index)
+{
+  TVector<int> v(4,5);
+ 	TVector<int> v1(4,4);
+ 	ASSERT_ANY_THROW(v - v1);
+}
+
+
+TEST(TVector, cant_multiply_vectors_with_not_equal_start_index)
+{
+  TVector<int> v(4,5);
+ 	TVector<int> v1(4,4);
+ 	ASSERT_ANY_THROW(v * v1);
 }
 
