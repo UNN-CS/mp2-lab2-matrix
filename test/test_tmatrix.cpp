@@ -56,7 +56,7 @@ TEST(TMatrix, can_set_and_get_element)
 TEST(TMatrix, throws_when_set_element_with_negative_index)
 {
  	TMatrix<int> m(5);
-	ASSERT_ANY_THROW(m[-1][1] = 11);
+	ASSERT_ANY_THROW(m[1][-1] = 11);
 }
 
 TEST(TMatrix, throws_when_set_element_with_too_large_index)
@@ -142,3 +142,43 @@ TEST(TMatrix, cant_subtract_matrixes_with_not_equal_size)
  	ASSERT_ANY_THROW(m - m1);
 }
 
+//My tests
+TEST(TMatrix, can_add_three_matrices_with_equal_size)
+{
+ 	TMatrix<int> m(4);
+ 	TMatrix<int> m1(4);
+  TMatrix<int> m2(4);
+ 	ASSERT_NO_THROW(m + m1 + m2);
+}
+
+TEST(TMatrix, cant_add_three_matrices_with_not_equal_size)
+{
+ 	TMatrix<int> m(4);
+ 	TMatrix<int> m1(5);
+  TMatrix<int> m2(9);
+ 	ASSERT_ANY_THROW(m + m1 + m2);
+}
+
+TEST(TMatrix, can_subtract_three_matrices_with_equal_size)
+{
+ 	TMatrix<int> m(4);
+ 	TMatrix<int> m1(4);
+  TMatrix<int> m2(4);
+ 	ASSERT_NO_THROW(m - m1 - m2);
+}
+
+TEST(TMatrix, cant_subtract_three_matrices_with_not_equal_size)
+{
+ 	TMatrix<int> m(4);
+ 	TMatrix<int> m1(5);
+  TMatrix<int> m2(9);
+ 	ASSERT_ANY_THROW(m - m1 - m2);
+}
+
+TEST(TVector, compare_not_equal_matrices_return_false)
+{
+  TVector<int> m(4);
+  TVector<int> m1(4);
+  m=5; m1=10;
+  EXPECT_FALSE(m==m1);
+}
