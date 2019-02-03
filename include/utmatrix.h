@@ -1,16 +1,7 @@
-﻿// ННГУ, ВМК, Курс "Методы программирования-2", С++, ООП
-//
-// utmatrix.h - Copyright (c) Гергель В.П. 07.05.2001
-//   Переработано для Microsoft Visual Studio 2008 Сысоевым А.В. (21.04.2015)
-//
-// Верхнетреугольная матрица - реализация на основе шаблона вектора
-
-
-
-# ifndef __TMATRIX_H__
+﻿# ifndef __TMATRIX_H__
 # define  __TMATRIX_H__
 
-# include  < iostream >
+# include  <iostream>
 
 using  namespace  std ;
 
