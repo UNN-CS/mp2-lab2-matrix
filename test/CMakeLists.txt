@@ -1,4 +1,5 @@
 set(target ${MP2_TESTS})
+set(CMAKE_CXX_STANDARD 11)
 
 file(GLOB hdrs "*.h*")
 file(GLOB srcs "*.cpp")
